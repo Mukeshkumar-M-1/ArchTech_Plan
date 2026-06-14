@@ -1,0 +1,31 @@
+flowchart TD
+    %% ==========================================
+    %% INPUT LAYER
+    %% ==========================================
+    In1[Template Architecture Plan] --> H1[Template Content Mapping Agent]
+    MS[Enriched Memory Store] -.->|Source Data| H1
+
+    %% ==========================================
+    %% CONTENT MAPPING WORKFLOW
+    %% ==========================================
+    subgraph MappingAgent [Template Content Mapping Agent]
+        H1 --> H2[Phase 5.1: Map Template Content to Sections]
+        H1 --> H3[Phase 5.2: Map Template Content to Required Fields]
+        H1 --> H4[Phase 5.3: Map Template Content to Dependency Graph]
+        H1 --> H5[Phase 5.4: Map Template Content to Output Types]
+    end
+
+    %% ==========================================
+    %% TECHNICAL IMPLEMENTATION DETAILS
+    %% ==========================================
+    H2 -.->|Section Binder| H2_Det[Link memory blocks to template headers]
+    H3 -.->|Variable Injector| H3_Det[Inject technical specs into placeholders]
+    H4 -.->|Graph Synchronizer| H4_Det[Sync mapped data against execution queue]
+    H5 -.->|Style Validator| H5_Det[Ensure mapped data fits output constraints]
+
+    %% ==========================================
+    %% OUTPUT LAYER
+    %% ==========================================
+    H5 --> H6[Phase 5 Complete: All Template Content Mapped]
+    
+    H6 --> I[Phase 6: Template Gap Detection]

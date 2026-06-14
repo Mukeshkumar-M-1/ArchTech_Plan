@@ -1,0 +1,37 @@
+flowchart TD
+    %% ==========================================
+    %% INPUT LAYER
+    %% ==========================================
+    In1[Mapped Content Schema] --> I1[Template Gap Detection Agent]
+    In2[Phase 8: Memory Updates] -.->|Re-verification Loop| I1
+
+    %% ==========================================
+    %% GAP DETECTION WORKFLOW
+    %% ==========================================
+    subgraph GapAgent [Template Gap Detection Agent]
+        I1 --> I2[Phase 6.1: Detect Missing Fields]
+        I1 --> I3[Phase 6.2: Detect Incomplete Content]
+        I1 --> I4[Phase 6.3: Detect Missing Dependencies]
+        I1 --> I5[Phase 6.4: Detect Missing Output Types]
+    end
+
+    %% ==========================================
+    %% TECHNICAL IMPLEMENTATION DETAILS
+    %% ==========================================
+    I2 -.->|Null Checker| I2_Det[Scan for unmapped or blank variables]
+    I3 -.->|Length/Quality Checker| I3_Det[Flag sections that lack sufficient detail]
+    I4 -.->|DAG Validator| I4_Det[Ensure all upstream requirements are met]
+    I5 -.->|Style Validator| I5_Det[Flag sections with missing formatting specs]
+
+    %% ==========================================
+    %% OUTPUT LAYER & DECISION LOGIC
+    %% ==========================================
+    I2 --> I6[Phase 6 Complete: All Template Gap Detection]
+    I3 --> I6
+    I4 --> I6
+    I5 --> I6
+
+    I6 --> I7{Gaps Detected?}
+    
+    I7 -->|Yes| J[Phase 7: Template User Clarification]
+    I7 -->|No| L[Phase 9: Template Final Assembly]

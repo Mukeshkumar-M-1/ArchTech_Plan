@@ -1,0 +1,30 @@
+flowchart TD
+    %% ==========================================
+    %% INPUT LAYER
+    %% ==========================================
+    In1[Gap Detection Logs] --> J1[Template User Clarification Agent]
+
+    %% ==========================================
+    %% USER CLARIFICATION WORKFLOW
+    %% ==========================================
+    subgraph ClarificationAgent [Template User Clarification Agent]
+        J1 --> J2[Phase 7.1: Generate Missing Questions]
+        J1 --> J3[Phase 7.2: Ask User]
+        J1 --> J4[Phase 7.3: Collect Answers]
+    end
+
+    %% ==========================================
+    %% TECHNICAL IMPLEMENTATION DETAILS
+    %% ==========================================
+    J2 -.->|Question Synthesizer| J2_Det[Translate technical gaps into simple questions]
+    J3 -.->|UI Interactive Prompt| J3_Det[Present questions to user via chat/forms]
+    J4 -.->|Answer Parser| J4_Det[Capture and structure user text inputs]
+
+    %% ==========================================
+    %% OUTPUT LAYER
+    %% ==========================================
+    J2 --> J5[Phase 7 Complete: All Template User Clarification]
+    J3 --> J5
+    J4 --> J5
+
+    J5 --> K[Phase 8: Template Memory Update]

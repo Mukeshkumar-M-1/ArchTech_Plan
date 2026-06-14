@@ -1,0 +1,33 @@
+flowchart TD
+    %% ==========================================
+    %% INPUT LAYER
+    %% ==========================================
+    In1[Raw Template Blueprint from Phase 3] --> G[Template Architecture Plan Agent]
+    MS[Enriched Memory Store] -.->|Available Knowledge| G
+
+    %% ==========================================
+    %% ARCHITECTURE PLANNING WORKFLOW
+    %% ==========================================
+    subgraph ArchAgent [Template Architecture Plan Agent]
+        G --> G1[Phase 4.1: Analyze Template Structure]
+        G --> G2[Phase 4.2: Analyze Template Sections]
+        G --> G3[Phase 4.3: Analyze Template Required Fields]
+        G --> G4[Phase 4.4: Analyze Template Dependency Graph]
+        G --> G5[Phase 4.5: Analyze Template Output Types]
+    end
+
+    %% ==========================================
+    %% TECHNICAL IMPLEMENTATION DETAILS
+    %% ==========================================
+    G1 -.->|Structure Matcher| G1_Det[Compare requested template layout against memory categories]
+    G2 -.->|Section Profiler| G2_Det[Determine the exact engineering domain needed for each chapter]
+    G3 -.->|Variable Mapper| G3_Det[Identify which memory keys map to which template placeholders]
+    G4 -.->|Execution Scheduler| G4_Det[Build the step-by-step generation queue based on dependencies]
+    G5 -.->|Format Negotiator| G5_Det[Plan how to convert memory data into tables, lists, or text]
+
+    %% ==========================================
+    %% OUTPUT LAYER
+    %% ==========================================
+    G5 --> G6[Phase 4 Complete: All Template Architecture Planned]
+    
+    G6 --> H[Phase 5: Template Content Mapping]

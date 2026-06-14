@@ -1,0 +1,32 @@
+flowchart TD
+    %% ==========================================
+    %% INPUT LAYER
+    %% ==========================================
+    C7[Phase 2 Completed: All Memories Created] --> D[Phase 3: Template Understanding]
+    D --> E[Template Analysis Agent]
+
+    %% ==========================================
+    %% TEMPLATE UNDERSTANDING WORKFLOW
+    %% ==========================================
+    subgraph AnalysisAgent [Template Analysis Agent]
+        E --> E1[Phase 3.1: Parse Template]
+        E --> E2[Phase 3.2: Identify Sections]
+        E --> E3[Phase 3.3: Identify Required Fields]
+        E --> E4[Phase 3.4: Build Dependency Graph]
+        E --> E5[Phase 3.5: Determine Output Types]
+    end
+
+    %% ==========================================
+    %% TECHNICAL IMPLEMENTATION DETAILS
+    %% ==========================================
+    E1 -.->|Format Parser| E1_Det[Convert raw uploaded template into clean document tree]
+    E2 -.->|Structure Scanner| E2_Det[Find all headers, chapters, and appendices]
+    E3 -.->|Variable Extractor| E3_Det["Locate all {{PLACEHOLDERS}} and blank tables"]
+    E4 -.->|DAG Builder| E4_Det[Determine which sections must be generated first]
+    E5 -.->|Style Analyzer| E5_Det[Determine if sections need tables, lists, or paragraphs]
+
+    %% ==========================================
+    %% OUTPUT LAYER
+    %% ==========================================
+    E5 --> E6[Phase 3 Completed: All Template Understanding]
+    E6 --> F[Phase 4: Template Architecture Planning]

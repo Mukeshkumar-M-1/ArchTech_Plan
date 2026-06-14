@@ -1,0 +1,36 @@
+flowchart TD
+    %% ==========================================
+    %% INPUT LAYER
+    %% ==========================================
+    In1[Phase 6: Gaps Cleared] --> L1[Template Final Assembly Agent]
+
+    %% ==========================================
+    %% FINAL ASSEMBLY WORKFLOW
+    %% ==========================================
+    subgraph AssemblyAgent [Template Final Assembly Agent]
+        L1 --> L2[Phase 9.1: Merge Sections]
+        L1 --> L3[Phase 9.2: Build TOC]
+        L1 --> L4[Phase 9.3: Apply Formatting]
+        L1 --> L5[Phase 9.4: Resolve References]
+        L1 --> L6[Phase 9.5: Generate Final Document]
+    end
+
+    %% ==========================================
+    %% TECHNICAL IMPLEMENTATION DETAILS
+    %% ==========================================
+    L2 -.->|Section Concatenator| L2_Det[Stitch markdown sections together in order]
+    L3 -.->|TOC Generator| L3_Det[Scan headers and build Table of Contents]
+    L4 -.->|CSS/Style Applicator| L4_Det[Apply markdown styling and table rules]
+    L5 -.->|Link Resolver| L5_Det[Ensure all internal cross-references match]
+    L6 -.->|Document Compiler| L6_Det[Output the unified raw markdown text]
+
+    %% ==========================================
+    %% OUTPUT LAYER
+    %% ==========================================
+    L2 --> L7[Phase 9 Complete: All Template Final Assembly]
+    L3 --> L7
+    L4 --> L7
+    L5 --> L7
+    L6 --> L7
+
+    L7 --> M[Phase 10: Template Outputs]

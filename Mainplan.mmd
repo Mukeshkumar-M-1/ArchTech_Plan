@@ -1,0 +1,145 @@
+flowchart TD
+
+    %% =========================
+    %% INPUT LAYER
+    %% =========================
+
+    A[User Uploads Document]
+
+    %% =========================
+    %% DATA EXTRACTION PIPELINE
+    %% =========================
+
+    A --> B[Phase 1: Data Extraction Pipeline]
+
+    B --> B1[Phase 1.1: Ingest]
+    B --> B2[Phase 1.2: Segment]
+    B --> B3[Phase 1.3: Detect]
+    B --> B4[Phase 1.4: Normalize]
+    B --> B5[Phase 1.5: Classify]
+    B --> B6[Phase 1.6: Explain]
+    B --> B7[Phase 1.7: Score & ID]
+    B --> B8[Phase 1.8: Global Dedup]
+    B8 --> B9
+
+    B9[Phase 1 Completed: All Data Extracted] --> C[Phase 2: Memory Creation pipeline]
+    
+
+    C --> C1[Phase 2.1: Requirements Enrichment]
+    C --> C2[Phase 2.2: Category Summaries]
+    C --> C3[Phase 2.3: Sub-category Summaries]
+    C --> C4[Phase 2.4: Relationship Mapping]
+    C --> C5[Phase 2.5: Project Overview]
+    C --> C6[Phase 2.6: Update Index]
+
+    C6 --> C7
+
+    C7[Phase 2 Completed: All Memories Created]
+
+    %% =========================
+    %% TEMPLATE UNDERSTANDING
+    %% =========================
+    C7 --> D[Phase 3: Template Understanding]
+
+    D --> E[Template Analysis Agent]
+    E --> E1[ Phase 3.1: Parse Template]
+    E --> E2[ Phase 3.2: Identify Sections]
+    E --> E3[ Phase 3.3: Identify Required Fields]
+    E --> E4[ Phase 3.4: Build Dependency Graph]
+    E --> E5[ Phase 3.5: Determine Output Types]
+    E5 --> E6
+
+    E6[Phase 3 Completed: All Template Understanding]
+    E6 --> F
+
+    %% =========================
+    %% ARCHITECTURE PLAN
+    %% =========================
+    F[Phase 4: Template Architecture Planning]
+
+    F --> G[Template Architecture Plan Agent]
+    G --> G1[ Phase 4.1: Analyze Template Structure]
+    G --> G2[ Phase 4.2: Analyze Template Sections]
+    G --> G3[ Phase 4.3: Analyze Template Required Fields]
+    G --> G4[ Phase 4.4: Analyze Template Dependency Graph]
+    G --> G5[ Phase 4.5: Analyze Template Output Types]
+    
+    G6[Phase 4 Complete: All Template Architecture]
+    G5 -->G6 
+    G6 -->H
+    %% =========================
+    %% CONTENT MAPPING
+    %% =========================
+    H[Phase 5: Template Content Mapping]
+    H --> H1[Template Content Mapping Agent]
+
+    H1 --> H2[ Phase 5.1: Map Template Content to Sections]
+    H1 --> H3[ Phase 5.2: Map Template Content to Required Fields]
+    H1 --> H4[ Phase 5.3: Map Template Content to Dependency Graph]
+    H1 --> H5[ Phase 5.4: Map Template Content to Output Types]
+
+    H5 --> H6[Phase 5 Complete: All Template Content Mapped]
+    H6 --> I   
+
+    %% =========================
+    %% GAP DETECTION
+    %% =========================
+    I[Phase 6: Template Gap Detection]
+
+    I --> I1[Template Gap Detection Agent]
+
+
+    I1 --> I2[ Phase 6.1: Detect Missing Fields]
+    I1 --> I3[ Phase 6.2: Detect Incomplete Content]
+    I1 --> I4[ Phase 6.3: Detect Missing Dependencies]
+    I1 --> I5[ Phase 6.4: Detect Missing Output Types]
+    I5 --> I6[Phase 6 Complete: All Template Gap Detection]
+    I6 --> I7{Gaps Detected?}
+    I7 -->|Yes| J
+    I7 -->|No| L
+
+    %% =========================
+    %% USER CLARIFICATION
+    %% =========================
+    J[Phase 7: Template User Clarification]
+    J --> J1[Template User Clarification Agent]
+
+    J1 --> J2[ Phase 7.1: Generate Missing Questions]
+    J1 --> J3[ Phase 7.2: Ask User]
+    J1 --> J4[ Phase 7.3: Collect Answers]
+    J4 --> J5[Phase 7 Complete: All Template User Clarification]
+    J5 --> K
+    %% =========================
+    %% MEMORY UPDATE
+    %% =========================
+    K[Phase 8: Template Memory Update]
+    K --> K1[Template Memory Update Agent]
+
+    K1 --> K2[ Phase 8.1: Update Existing Memories]
+    K1 --> K3[ Phase 8.2: Create New Memory Files]
+    K1 --> K4[ Phase 8.3: Update memory.md Index]
+    K1 --> K5[ Phase 8.4: Rebuild Memory files with user inputs]
+    K5 --> K6[Phase 8 Complete: All Template Memory Update]
+
+    K6 --> I
+
+    %% =========================
+    %% FINAL ASSEMBLY
+    %% =========================
+    L[Phase 9: Template Final Assembly]
+    L --> L1[Template Final Assembly Agent]
+
+    L1 --> L2[ Phase 9.1: Merge Sections]
+    L1 --> L3[Phase 9.2: Build TOC]
+    L1 --> L4[Phase 9.3: Apply Formatting]
+    L1 --> L5[Phase 9.4: Resolve References]
+    L1 --> L6[Phase 9.5: Generate Final Document]
+    L6 --> L7[Phase 9 Complete: All Template Final Assembly]
+    L7 --> M
+    %% =========================
+    %% OUTPUTS
+    %% =========================
+    M[Phase 10: Template Outputs]
+    M --> M1[Template Final Document with User inputs]
+    M1 --> M2[Markdown Export]
+    M2 --> M3[Phase 10 Complete: All Template Outputs]

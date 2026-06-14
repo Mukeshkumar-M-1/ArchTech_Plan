@@ -1,0 +1,34 @@
+flowchart TD
+    %% ==========================================
+    %% INPUT LAYER
+    %% ==========================================
+    A[requirements.json - Raw Requirements JSON] --> B[Phase 2: Memory Creation Agent]
+
+    %% ==========================================
+    %% PIPELINE PHASES (6 PHASES OF ENRICHMENT)
+    %% ==========================================
+    subgraph MemoryAgent [Phase 2: Memory Enrichment Pipeline]
+        B --> PA[Phase 2.1: Requirements Enrichment]
+        PA --> PB[Phase 2.2: Category Summaries]
+        PB --> PC[Phase 2.3: Sub-category Summaries]
+        PC --> PD[Phase 2.4: Relationship Mapping]
+        PD --> PE[Phase 2.5: Project Overview]
+        PE --> PG[Phase 2.6: Update Index]
+    end
+
+    %% ==========================================
+    %% STORAGE / OUTPUT FILES (PERSISTENCE LAYER)
+    %% ==========================================
+    PA -->|Write| OutA[requirements/*.md]
+    PB -->|Write| OutB[categories/*.md]
+    PC -->|Write| OutC[subcategories/*.md]
+    PD -->|Write| OutD[relationships.md]
+    PE -->|Write| OutE[overview.md]
+    PG -->|Write| OutG[MEMORY.md Index]
+
+    OutA --> MS[Enriched Markdown Memory Store]
+    OutB --> MS
+    OutC --> MS
+    OutD --> MS
+    OutE --> MS
+    OutG --> MS

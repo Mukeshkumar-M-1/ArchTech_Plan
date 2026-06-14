@@ -1,0 +1,34 @@
+flowchart TD
+    %% ==========================================
+    %% INPUT LAYER
+    %% ==========================================
+    In1[Raw User Answers] --> K1[Template Memory Update Agent]
+
+    %% ==========================================
+    %% MEMORY UPDATE WORKFLOW
+    %% ==========================================
+    subgraph UpdateAgent [Template Memory Update Agent]
+        K1 --> K2[Phase 8.1: Update Existing Memories]
+        K1 --> K3[Phase 8.2: Create New Memory Files]
+        K1 --> K4[Phase 8.3: Update memory.md Index]
+        K1 --> K5[Phase 8.4: Rebuild Memory Vector Embeddings]
+    end
+
+    %% ==========================================
+    %% TECHNICAL IMPLEMENTATION DETAILS
+    %% ==========================================
+    K2 -.->|Idempotent Writer| K2_Det[Safely inject or overwrite specific fields without duplicating]
+    K3 -.->|File Generator| K3_Det[Draft completely new markdown sheets for new sections]
+    K4 -.->|Index Synchronizer| K4_Det[Update the global MEMORY.md table of contents]
+    K5 -.->|Vector Updater| K5_Det[Refresh vector database for semantic searching]
+
+    %% ==========================================
+    %% OUTPUT LAYER
+    %% ==========================================
+    K2 --> K6[Phase 8 Complete: All Template Memory Update]
+    K3 --> K6
+    K4 --> K6
+    K5 --> K6
+
+    %% CLOSED LOOP VERIFICATION
+    K6 -->|Loop back to re-verify gaps| I[Phase 6: Template Gap Detection]

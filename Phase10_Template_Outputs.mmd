@@ -1,0 +1,22 @@
+flowchart TD
+    %% ==========================================
+    %% INPUT LAYER
+    %% ==========================================
+    L7[Phase 9: Final Assembly Completed] --> M[Phase 10: Template Outputs]
+
+    %% ==========================================
+    %% OUTPUT EXPORT WORKFLOW
+    %% ==========================================
+    subgraph OutputsAgent [Template Outputs Agent]
+        M --> M1[Template Final Document with User inputs]
+        M1 --> M2[Markdown to .odt Export]
+    end
+
+    %% ==========================================
+    %% TECHNICAL IMPLEMENTATION DETAILS
+    %% ==========================================
+    M2 -.->|Pandoc  / Native Writer| M2_Det[Save directly as structured text .odt]
+    %% ==========================================
+    %% OUTPUT LAYER
+    %% ==========================================
+    M2 --> M3[Phase 10 Complete: All Template Outputs Delivered]

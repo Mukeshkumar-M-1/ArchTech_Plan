@@ -1,0 +1,36 @@
+flowchart TD
+
+    %% ==========================================
+    %% INPUT LAYER & INGESTION
+    %% ==========================================
+    A[User Uploads Document] --> S1[Phase 1.1: Ingest]
+
+    %% ==========================================
+    %% PIPELINE STAGES (8-STAGE MODULAR FLOW)
+    %% ==========================================
+    subgraph Pipeline [Phase 1: Data Extraction Pipeline]
+        S1 -->|Raw Text & Tables| S2[Phase 1.2: Segment]
+        S2 -->|Clean Text Paragraphs| S3[Phase 1.3: Detect]
+        S3 -->|Raw Requirements| S4[Phase 1.4: Normalize]
+        S4 -->|Clean Requirements| S5[Phase 1.5: Classify]
+        S5 -->|Categorized Requirements| S6[Phase 1.6: Explain]
+        S6 -->|Explained Requirements| S7[Phase 1.7: Score & ID]
+        S7 -->|Scored Requirements| S8[Phase 1.8: Global Dedup]
+    end
+
+    %% ==========================================
+    %% TECHNICAL IMPLEMENTATION DETAILS
+    %% ==========================================
+    S1 -.->|pdfplumber + OCR Fallback| S1_Det[Extract text/tables page-by-page]
+    S2 -.->|Claude Sonnet/Opus + Regex Heuristic fallback| S2_Det[Identify paragraphs & filter Cover/ToC pages]
+    S3 -.->|LLM / Heuristic Noise Filtering| S3_Det[Extract actual requirement statements]
+    S4 -.->|Grammar standardizer| S4_Det[Standardize phrasing and clean typos]
+    S5 -.->|Embedding Similarity Classifier| S5_Det[Map requirements to functional categories]
+    S6 -.->|AI Reasoning Contextualizer| S6_Det[Generate reasoning explanations for requirements]
+    S7 -.->|Criticality & Complexity Scoring| S7_Det[Assign priority scores & unique thread-safe IDs]
+    S8 -.->|Similarity Threshold De-duplication| S8_Det[Deduplicate and cross-link duplicate requirements]
+
+    %% ==========================================
+    %% PERSISTENCE LAYER (MEMORY STORE)
+    %% ==========================================
+    S8 --> F[Memory Store / JSON Output]
