@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phase 09 &middot; Template Final Assembly &mdash; Documentation Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="back-link" href="index.html">&larr; Architecture</a>
+    <div class="tracker">
+      <a class="" href="phase-01.html" aria-label="Phase 01"></a>
+      <a class="" href="phase-02.html" aria-label="Phase 02"></a>
+      <a class="" href="phase-03.html" aria-label="Phase 03"></a>
+      <a class="" href="phase-04.html" aria-label="Phase 04"></a>
+      <a class="" href="phase-05.html" aria-label="Phase 05"></a>
+      <a class="" href="phase-06.html" aria-label="Phase 06"></a>
+      <a class="" href="phase-07.html" aria-label="Phase 07"></a>
+      <a class="" href="phase-08.html" aria-label="Phase 08"></a>
+      <a class="active" href="phase-09.html" aria-label="Phase 09"></a>
+      <a class="" href="phase-10.html" aria-label="Phase 10"></a>
+    </div>
+  </div>
+</nav>
+
+<header class="phase-header shell">
+  <div class="eyebrow">
+    Phase 09 <span class="stage-count">&middot; stages 9.1 – 9.5</span>
+  </div>
+  <h1 class="reveal">Template Final Assembly</h1>
+  <p class="goal reveal" data-delay="80">Compile every mapped, gap-free section into <b>one integrated draft</b>.</p>
+  
+</header>
+
+<main class="shell">
+  <div class="mechanism-panel reveal">
+    <span class="tag">How it works</span>
+    <p>Once all content is mapped and the Gap Detection gate confirms everything is 100% complete, this phase takes over. It acts as the final "Book Binder," stitching all individual pieces into a single, cohesive document.</p>
+  </div>
+
+  <div class="stage-sequence">
+    <div class="stage-guide"></div>
+      
+      <div class="stage-card reveal" data-delay="0">
+        <div class="stage-num mono">9.1</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            Merge Sections
+          </h3>
+          <p class="summary">Concatenates all individual memory files in the correct order.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Takes the ordered list of files produced by the execution schedule and physically appends them sequentially into a single target file using low-memory streaming.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>Creates the final book from the chapters without causing a memory overflow on the server.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Disjointed File Problem:</strong> Replaces hundreds of tiny memory files with one easily readable specification sheet.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status processing">STREAMING</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"action"</span>: <span class="hl-val">"File Append (>>)"</span>,
+  <span class="hl-key">"source"</span>: <span class="hl-val">"memory/ch03_architecture.md"</span>,
+  <span class="hl-key">"target"</span>: <span class="hl-val">"build/final_draft.md"</span>,
+  <span class="hl-key">"status"</span>: <span class="hl-val">"MERGING_SECTION_4_OF_20"</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="70">
+        <div class="stage-num mono">9.2</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="6" x2="21" y2="6"></line><line x1="10" y1="12" x2="21" y2="12"></line><line x1="10" y1="18" x2="21" y2="18"></line><path d="M4 6h1v4"></path><path d="M4 10h2"></path><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"></path></svg>
+            Build TOC
+          </h3>
+          <p class="summary">Scans the merged draft and automatically generates a Table of Contents.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Scans the merged buffer for Markdown headers (e.g., <code>#</code>, <code>##</code>) and compiles a hierarchical TOC at the top of the document.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>Makes the massive document immediately navigable.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Navigation Problem:</strong> Prevents the user from having to scroll blindly through 100 pages of text.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status ready">COMPILED</span>
+            </div>
+            <pre><span class="hl-key">## Table of Contents</span>
+- [1. Executive Summary](#1-executive-summary)
+- [2. System Architecture](#2-system-architecture)
+  - [2.1 Hardware Specs](#21-hardware-specs)</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="140">
+        <div class="stage-num mono">9.3</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4V2"></path><path d="M15 16v-2"></path><path d="M8 9h2"></path><path d="M20 9h2"></path><path d="M17.8 11.8l1.4 1.4"></path><path d="M17.8 6.2l1.4-1.4"></path><path d="M12.2 6.2l-1.4-1.4"></path><path d="M12.2 11.8l-1.4 1.4"></path><path d="m3 21 9-9"></path></svg>
+            Apply Formatting
+          </h3>
+          <p class="summary">Enforces consistent markdown styling across the entire book.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Runs a formatting script over the text to ensure uniformity (e.g., all tables have standard markdown pipes, headers have correct spacing).</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>Gives the document a highly professional visual polish.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Visual Clutter Problem:</strong> Fixes ugly text wrapping or broken tables caused by different LLMs generating slightly different formats.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status processing">FORMATTED</span>
+            </div>
+            <pre><span class="hl">> run markdown-linter final_draft.md --fix</span>
+[OK] Normalized 14 tables
+[OK] Fixed 3 header spacings
+[OK] Removed trailing whitespaces</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="210">
+        <div class="stage-num mono">9.4</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            Resolve References
+          </h3>
+          <p class="summary">Fixes internal links so clicking a reference jumps to the right section.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Finds internal reference tags like <code>[See Section 4.2]</code> and updates them so they correctly link to the generated anchor tags.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>Makes the final Markdown document fully interactive and traceable.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Dead Link Problem:</strong> Ensures cross-references aren't broken when sections are re-numbered during merging.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status ready">LINKED</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"reference_tag"</span>: <span class="hl-val">"[See Section 4.2]"</span>,
+  <span class="hl-key">"resolved_anchor"</span>: <span class="hl-val">"#42-thermal-constraints"</span>,
+  <span class="hl-key">"status"</span>: <span class="hl-val">"LINK_VERIFIED"</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="280">
+        <div class="stage-num mono">9.5</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+            Generate Final Document
+          </h3>
+          <p class="summary">Outputs the absolute final version of the unified text.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Finalizes the text buffer and saves it to the disk as the golden master copy.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>This is the final phase before the document leaves the internal system pipeline.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Finalization Problem:</strong> Locks the draft so no further autonomous agents can modify the text.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status ready">FINALIZED</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"file"</span>: <span class="hl-val">"build/GOLDEN_MASTER_DRAFT.md"</span>,
+  <span class="hl-key">"total_sections"</span>: <span class="hl-num">42</span>,
+  <span class="hl-key">"status"</span>: <span class="hl-val">"LOCKED_FOR_EXPORT"</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+  </div>
+</main>
+
+<div class="shell">
+  <nav class="footnav">
+    <div class="footnav-row">
+      <a class="footnav-link prev" href="phase-08.html">
+        <span class="label mono">&larr; Previous</span>
+        <span class="name">08 &middot; Template Memory Update</span>
+      </a>
+      <a class="footnav-link next" href="phase-10.html">
+        <span class="label mono">Next &rarr;</span>
+        <span class="name">10 &middot; Template Outputs</span>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

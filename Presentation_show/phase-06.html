@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phase 06 &middot; Template Gap Detection &mdash; Documentation Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="back-link" href="index.html">&larr; Architecture</a>
+    <div class="tracker">
+      <a class="" href="phase-01.html" aria-label="Phase 01"></a>
+      <a class="" href="phase-02.html" aria-label="Phase 02"></a>
+      <a class="" href="phase-03.html" aria-label="Phase 03"></a>
+      <a class="" href="phase-04.html" aria-label="Phase 04"></a>
+      <a class="" href="phase-05.html" aria-label="Phase 05"></a>
+      <a class="active" href="phase-06.html" aria-label="Phase 06"></a>
+      <a class="" href="phase-07.html" aria-label="Phase 07"></a>
+      <a class="" href="phase-08.html" aria-label="Phase 08"></a>
+      <a class="" href="phase-09.html" aria-label="Phase 09"></a>
+      <a class="" href="phase-10.html" aria-label="Phase 10"></a>
+    </div>
+  </div>
+</nav>
+
+<header class="phase-header shell">
+  <div class="eyebrow">
+    Phase 06 <span class="stage-count">&middot; stages 6.1 – 6.4</span>
+  </div>
+  <h1 class="reveal">Template Gap Detection</h1>
+  <p class="goal reveal" data-delay="80">Identify any missing data or broken dependencies <b>before</b> a single word of final text is generated.</p>
+  <div class="loop-indicator">
+        <span class="seq"><span class="current">6</span><span class="">7</span><span class="">8</span></span>
+        part of the verification loop &middot; repeats until no gaps remain
+      </div>
+</header>
+
+<main class="shell">
+  <div class="mechanism-panel reveal">
+    <span class="tag">How it works</span>
+    <p>This is the ultimate "Quality Assurance" gate in the pipeline. Before generating any actual text, this agent scans the mapped template to ensure every single required detail is present, correctly formatted, and structurally sound.</p>
+  </div>
+
+  <div class="stage-sequence">
+    <div class="stage-guide"></div>
+      
+      <div class="stage-card reveal" data-delay="0">
+        <div class="stage-num mono">6.1</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            Detect Missing Fields
+          </h3>
+          <p class="summary">Scans the template for empty placeholders.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Performs a rigorous check of all placeholders. If a placeholder was mapped in Phase 5 but the memory store had no data for it, this stage flags it.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>Prevents the final document from containing embarrassing blanks like "The required voltage is [INSERT VOLTAGE HERE]."</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Null Data Problem:</strong> Ensures absolute data completeness before proceeding.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status error">FLAGGED</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"field"</span>: <span class="hl-val">"{{MAX_VOLTAGE}}"</span>,
+  <span class="hl-key">"status"</span>: <span class="hl-val">"NULL"</span>,
+  <span class="hl-key">"error"</span>: <span class="hl-val">"Data not found in Memory Store"</span>,
+  <span class="hl-key">"action"</span>: <span class="hl-val">"Route to Phase 7"</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="70">
+        <div class="stage-num mono">6.2</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            Detect Incomplete Content
+          </h3>
+          <p class="summary">Checks if the mapped memory provides enough detail for the section.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Evaluates the quality and length of the mapped content. If a "Detailed Architecture" section only received a single sentence, it gets flagged.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>Guarantees that the final document meets professional depth and length standards.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Superficial Content Problem:</strong> Prevents the generation of bare-bones or heavily unbalanced chapters.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status error">FLAGGED</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"section"</span>: <span class="hl-val">"3.1 Architecture Overview"</span>,
+  <span class="hl-key">"status"</span>: <span class="hl-val">"INCOMPLETE (Word count: 14)"</span>,
+  <span class="hl-key">"loop_count"</span>: <span class="hl-num">2</span>,
+  <span class="hl-key">"action"</span>: <span class="hl-val">"OFFERING_SKIP_BYPASS"</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="140">
+        <div class="stage-num mono">6.3</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            Detect Missing Dependencies
+          </h3>
+          <p class="summary">Verifies that all upstream variables required by a section are available.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Re-validates the execution queue. Ensures that if Section B relies on a parameter from Section A, that parameter actually exists.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>Prevents cascading failures where one missing piece of data ruins multiple downstream chapters.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Broken Chain Problem:</strong> Catches architectural logic flaws before they corrupt the final document.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status error">FLAGGED</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"target"</span>: <span class="hl-val">"Chapter 4 (Thermal)"</span>,
+  <span class="hl-key">"missing_dependency"</span>: <span class="hl-val">"Power_Output_Max"</span>,
+  <span class="hl-key">"status"</span>: <span class="hl-val">"CHAIN_BROKEN"</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="210">
+        <div class="stage-num mono">6.4</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            Detect Missing Output Types
+          </h3>
+          <p class="summary">Checks if formatting rules are missing for specific sections.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Ensures every section has an assigned, validated style template.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>Prevents formatting engine crashes during the final assembly.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Unformatted Text Problem:</strong> Ensures 100% styling coverage for the entire document.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status error">FLAGGED</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"section"</span>: <span class="hl-val">"Appendix A"</span>,
+  <span class="hl-key">"target_format"</span>: <span class="hl-val">"UNKNOWN"</span>,
+  <span class="hl-key">"status"</span>: <span class="hl-val">"STYLE_ERROR"</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  <div class="decision-panel reveal">
+    <div class="branch yes">
+      <span class="tag mono">If gaps detected: yes</span>
+      Routes forward to Phase 7 &mdash; the user is asked to clarify the missing pieces.
+    </div>
+    <div class="branch">
+      <span class="tag mono">If gaps detected: no</span>
+      Skips ahead to Phase 9 &mdash; nothing is missing, so assembly can begin.
+    </div>
+  </div>
+</main>
+
+<div class="shell">
+  <nav class="footnav">
+    <div class="footnav-row">
+      <a class="footnav-link prev" href="phase-05.html">
+        <span class="label mono">&larr; Previous</span>
+        <span class="name">05 &middot; Template Content Mapping</span>
+      </a>
+      <a class="footnav-link next" href="phase-07.html">
+        <span class="label mono">Next &rarr;</span>
+        <span class="name">07 &middot; Template User Clarification</span>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

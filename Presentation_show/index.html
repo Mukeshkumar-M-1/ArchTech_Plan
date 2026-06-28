@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentation Pipeline — Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ============= HERO ============= */
+  .hero {
+    padding: var(--space-7) 0 var(--space-6);
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: var(--space-2);
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.08;
+    max-width: 14ch;
+    margin-bottom: var(--space-3);
+  }
+  .hero p.thesis {
+    font-size: 1.15rem;
+    max-width: 38ch;
+    color: var(--ink-soft);
+    margin-bottom: var(--space-4);
+  }
+
+  /* overview ribbon: 10 ticks */
+  .ribbon {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .ribbon-tick {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    padding: 0.35rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--surface);
+  }
+  .ribbon-tick.is-loop { border-color: var(--accent); color: var(--accent); background: var(--accent-wash); }
+
+  /* ============= SPINE TRACK ============= */
+  .spine-track {
+    position: relative;
+    padding: var(--space-6) 0;
+  }
+  .spine-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .spine-line line {
+    stroke: var(--accent);
+    stroke-width: 2;
+    transition: stroke-dashoffset 0.1s linear;
+  }
+  .spine-track-bg {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--line);
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+
+  .phase-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    align-items: center;
+    margin-bottom: var(--space-4);
+    z-index: 1;
+  }
+  .phase-row.right .phase-card { grid-column: 3; }
+  .phase-row.right .phase-spacer-l { grid-column: 1; }
+  .phase-row.left .phase-card { grid-column: 1; }
+  .phase-row.left .phase-spacer-r { grid-column: 3; }
+
+  .phase-node {
+    grid-column: 2;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  @keyframes pulseNode {
+    0% { box-shadow: 0 0 0 0 rgba(61, 90, 69, 0.4); }
+    70% { box-shadow: 0 0 0 8px rgba(61, 90, 69, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(61, 90, 69, 0); }
+  }
+  .phase-node.active {
+    background: var(--accent);
+    animation: pulseNode 2s infinite;
+  }
+
+  .phase-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: var(--space-3);
+    transition: border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+  }
+  .phase-card.active {
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(61, 90, 69, 0.08);
+  }
+  .phase-card:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px -12px rgba(26,26,23,0.12);
+  }
+  .phase-card.active:hover {
+    border-color: var(--accent);
+  }
+  .phase-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    margin-bottom: 0.35rem;
+    display: block;
+  }
+  .phase-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+  }
+  .phase-card p {
+    font-size: 0.88rem;
+    margin-bottom: 0.6rem;
+  }
+  .phase-card .open {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--ink-soft);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .phase-card:hover .open { color: var(--accent); }
+
+  /* ============= LOOP MODULE ============= */
+  .loop-module {
+    position: relative;
+    z-index: 1;
+    margin: var(--space-5) 0;
+    border: 1.5px solid var(--accent);
+    border-radius: 18px;
+    background: var(--accent-wash);
+    padding: var(--space-4) var(--space-3);
+  }
+  .loop-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin-bottom: var(--space-3);
+  }
+  .loop-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+    position: relative;
+  }
+  .loop-card {
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    padding: var(--space-2) var(--space-2) var(--space-3);
+    text-align: left;
+  }
+  .loop-card .phase-tag { color: var(--accent); }
+  .loop-card h4 {
+    font-size: 0.98rem;
+    margin-bottom: 0.3rem;
+  }
+  .loop-card p { font-size: 0.82rem; }
+
+  .loop-arrows {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 1.1rem;
+  }
+
+  .loop-return {
+    margin-top: var(--space-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+  }
+  .loop-return svg { width: 90px; height: 28px; }
+
+  .gap-branch {
+    margin-top: var(--space-2);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--ink-soft);
+  }
+  .gap-branch b { color: var(--accent); }
+
+  @media (max-width: 760px) {
+    .phase-row { grid-template-columns: 1fr; }
+    .phase-row.right .phase-card,
+    .phase-row.left .phase-card { grid-column: 1; }
+    .phase-node { display: none; }
+    .spine-track-bg, .spine-line { display: none; }
+    .loop-grid { grid-template-columns: 1fr; }
+    .loop-arrows { transform: rotate(90deg); padding: 0.3rem 0; }
+  }
+
+  /* ============= NOTES STRIP ============= */
+  .notes-strip {
+    padding: var(--space-6) 0 var(--space-7);
+  }
+  .notes-strip h2 {
+    font-size: 1.6rem;
+    margin-bottom: var(--space-1);
+  }
+  .notes-strip > p {
+    margin-bottom: var(--space-4);
+    max-width: 42ch;
+  }
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+  .note-card {
+    border-left: 2px solid var(--accent);
+    padding-left: var(--space-2);
+  }
+  .note-card .num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+  }
+  .note-card h4 {
+    font-size: 1rem;
+    margin: 0.3rem 0 0.4rem;
+  }
+  .note-card p { font-size: 0.86rem; }
+
+  @media (max-width: 760px) {
+    .notes-grid { grid-template-columns: 1fr; gap: var(--space-3); }
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--line);
+    padding: var(--space-3) 0 var(--space-5);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <span class="brand"><span class="dot"></span>doc-pipeline / architecture</span>
+    <a class="back-link mono" href="learning-path.html">Learning path &rarr;</a>
+  </div>
+</nav>
+
+<header class="hero shell">
+  <div class="hero-eyebrow reveal">System Architecture</div>
+  <h1 class="reveal" data-delay="60">An end-to-end documentation pipeline</h1>
+  <p class="thesis reveal" data-delay="120">A document only gets compiled once every gap in it has been found, asked about, and closed — everything before that is just preparation.</p>
+
+  <div class="ribbon reveal" data-delay="180">
+    <span class="ribbon-tick">01 Extraction</span>
+    <span class="ribbon-tick">02 Memory</span>
+    <span class="ribbon-tick">03 Understand</span>
+    <span class="ribbon-tick">04 Plan</span>
+    <span class="ribbon-tick">05 Map</span>
+    <span class="ribbon-tick is-loop">06–08 Verify loop</span>
+    <span class="ribbon-tick">09 Assemble</span>
+    <span class="ribbon-tick">10 Output</span>
+  </div>
+</header>
+
+<main class="shell spine-track">
+  <div class="spine-track-bg"></div>
+  <svg class="spine-line" width="2"><line x1="1" y1="0" x2="1" y2="100%"/></svg>
+
+  <!-- Phase 1 -->
+  <div class="phase-row left">
+    <a class="phase-card reveal" href="phase-01.html">
+      <span class="phase-tag mono">01 · 1.1–1.8</span>
+      <h3>Data Extraction Pipeline</h3>
+      <p>Raw spec PDFs and images become a clean, deduplicated requirement list — ingested, segmented, normalized, classified, and scored.</p>
+      <span class="open">Open phase →</span>
+    </a>
+    <div class="phase-node"></div>
+    <div class="phase-spacer-r"></div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase-row right">
+    <div class="phase-spacer-l"></div>
+    <div class="phase-node"></div>
+    <a class="phase-card reveal" href="phase-02.html">
+      <span class="phase-tag mono">02 · 2.1–2.6</span>
+      <h3>Memory Creation Pipeline</h3>
+      <p>The flat requirement catalog becomes a structured knowledge base — enriched, summarized, mapped, and indexed in <span class="mono">MEMORY.md</span>.</p>
+      <span class="open">Open phase →</span>
+    </a>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="phase-row left">
+    <a class="phase-card reveal" href="phase-03.html">
+      <span class="phase-tag mono">03 · 3.1–3.5</span>
+      <h3>Template Understanding</h3>
+      <p>The Template Analysis Agent parses the blank target template, identifies sections, required fields, and builds a dependency DAG.</p>
+      <span class="open">Open phase →</span>
+    </a>
+    <div class="phase-node"></div>
+    <div class="phase-spacer-r"></div>
+  </div>
+
+  <!-- Phase 4 -->
+  <div class="phase-row right">
+    <div class="phase-spacer-l"></div>
+    <div class="phase-node active"></div>
+    <a class="phase-card reveal active" href="phase-04.html">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.35rem;">
+        <span class="phase-tag mono" style="margin-bottom: 0;">04 · 4.1–4.5</span>
+        <span class="phase-tag mono" style="margin-bottom: 0; background: var(--accent-wash); padding: 2px 8px; border-radius: 4px;">ACTIVE DEV</span>
+      </div>
+      <h3>Template Architecture Planning</h3>
+      <p>The Architecture Plan Agent designs the build blueprint — compilation order, layout configuration, and output scheduling.</p>
+      <span class="open">Open phase →</span>
+    </a>
+  </div>
+
+  <!-- Phase 5 -->
+  <div class="phase-row left">
+    <a class="phase-card reveal" href="phase-05.html">
+      <span class="phase-tag mono">05 · 5.1–5.4</span>
+      <h3>Template Content Mapping</h3>
+      <p>Enriched memories from Phase 2 are bound to the section variables and placeholders identified in Phase 3.</p>
+      <span class="open">Open phase →</span>
+    </a>
+    <div class="phase-node"></div>
+    <div class="phase-spacer-r"></div>
+  </div>
+
+  <!-- LOOP MODULE: Phases 6, 7, 8 -->
+  <div class="loop-module reveal">
+    <div class="loop-label">The closed-loop verification cycle</div>
+    <div class="loop-grid">
+      <a class="loop-card" href="phase-06.html">
+        <span class="phase-tag mono">06 · 6.1–6.4</span>
+        <h4>Gap Detection</h4>
+        <p>Checks for missing fields, incomplete content, broken dependencies, missing output types.</p>
+      </a>
+      <a class="loop-card" href="phase-07.html">
+        <span class="phase-tag mono">07 · 7.1–7.3</span>
+        <h4>User Clarification</h4>
+        <p>Compiles gaps into questions, asks the user, collects their answers.</p>
+      </a>
+      <a class="loop-card" href="phase-08.html">
+        <span class="phase-tag mono">08 · 8.1–8.4</span>
+        <h4>Memory Update</h4>
+        <p>Writes answers back into memory files and the index — idempotently.</p>
+      </a>
+    </div>
+
+    <div class="loop-return">
+      <svg viewBox="0 0 90 28" fill="none">
+        <path d="M85 4 C85 22, 60 22, 5 22" stroke="currentColor" stroke-width="1.6" stroke-dasharray="4 3"/>
+        <path d="M5 22 L11 18 M5 22 L11 26" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+      loops back to 06 until no gaps remain
+    </div>
+
+    <div class="gap-branch">Gaps detected? &nbsp;<b>Yes</b> → loop continues &nbsp;·&nbsp; <b>No</b> → proceeds to 09</div>
+  </div>
+
+  <!-- Phase 9 -->
+  <div class="phase-row right">
+    <div class="phase-spacer-l"></div>
+    <div class="phase-node"></div>
+    <a class="phase-card reveal" href="phase-09.html">
+      <span class="phase-tag mono">09 · 9.1–9.5</span>
+      <h3>Template Final Assembly</h3>
+      <p>Sections merge, the table of contents builds, formatting applies, and cross-references resolve into one draft.</p>
+      <span class="open">Open phase →</span>
+    </a>
+  </div>
+
+  <!-- Phase 10 -->
+  <div class="phase-row left">
+    <a class="phase-card reveal" href="phase-10.html">
+      <span class="phase-tag mono">10 · final</span>
+      <h3>Template Outputs</h3>
+      <p>The completed document exports to Markdown, DOCX, and PDF — distribution ready.</p>
+      <span class="open">Open phase →</span>
+    </a>
+    <div class="phase-node"></div>
+    <div class="phase-spacer-r"></div>
+  </div>
+</main>
+
+<section class="notes-strip shell">
+  <!-- <h2 class="reveal">Three things the build leans on</h2>
+  <p class="reveal" data-delay="60">Architectural notes worth keeping in view while implementing.</p>
+  <div class="notes-grid">
+    <div class="note-card reveal" data-delay="0">
+      <div class="num mono">01</div>
+      <h4>Closed-loop verification</h4>
+      <p>Routing Phase 8 back to Phase 6 means nothing incomplete ever reaches assembly. Gap detection re-runs after every update.</p>
+    </div>
+    <div class="note-card reveal" data-delay="100">
+      <div class="num mono">02</div>
+      <h4>Idempotent state updates</h4>
+      <p>Because the loop can run multiple times, Phase 8 must overwrite existing keys cleanly — never duplicate a parameter on a second pass.</p>
+    </div>
+    <div class="note-card reveal" data-delay="200">
+      <div class="num mono">03</div>
+      <h4>Fail-fast planning</h4>
+      <p>Phases 5 and 6 are early gates. Catching a missing variable here is far cheaper than discovering it mid-generation in Phase 9.</p>
+    </div>
+  </div> -->
+</section>
+
+<footer class="site-footer shell">
+  <span>doc-pipeline / architecture</span>
+  <span>10 phases · 1 loop · 3 outputs</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

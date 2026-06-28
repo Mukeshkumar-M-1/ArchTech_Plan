@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phase 08 &middot; Template Memory Update &mdash; Documentation Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="back-link" href="index.html">&larr; Architecture</a>
+    <div class="tracker">
+      <a class="" href="phase-01.html" aria-label="Phase 01"></a>
+      <a class="" href="phase-02.html" aria-label="Phase 02"></a>
+      <a class="" href="phase-03.html" aria-label="Phase 03"></a>
+      <a class="" href="phase-04.html" aria-label="Phase 04"></a>
+      <a class="" href="phase-05.html" aria-label="Phase 05"></a>
+      <a class="" href="phase-06.html" aria-label="Phase 06"></a>
+      <a class="" href="phase-07.html" aria-label="Phase 07"></a>
+      <a class="active" href="phase-08.html" aria-label="Phase 08"></a>
+      <a class="" href="phase-09.html" aria-label="Phase 09"></a>
+      <a class="" href="phase-10.html" aria-label="Phase 10"></a>
+    </div>
+  </div>
+</nav>
+
+<header class="phase-header shell">
+  <div class="eyebrow">
+    Phase 08 <span class="stage-count">&middot; stages 8.1 – 8.4</span>
+  </div>
+  <h1 class="reveal">Template Memory Update</h1>
+  <p class="goal reveal" data-delay="80">Write the user's answers back into the <b>knowledge base</b> — then re-check everything.</p>
+  <div class="loop-indicator">
+        <span class="seq"><span class="">6</span><span class="">7</span><span class="current">8</span></span>
+        part of the verification loop &middot; repeats until no gaps remain
+      </div>
+</header>
+
+<main class="shell">
+  <div class="mechanism-panel reveal">
+    <span class="tag">How it works</span>
+    <p>After the user provides clarifications in Phase 7, this agent integrates those answers deeply into the system's memory banks, ensuring the data is permanently saved and ready for the gap re-verification loop.</p>
+  </div>
+
+  <div class="stage-sequence">
+    <div class="stage-guide"></div>
+      
+      <div class="stage-card reveal" data-delay="0">
+        <div class="stage-num mono">8.1</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            Update Existing Memories
+          </h3>
+          <p class="summary">Modifies existing markdown sheets with the new values.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Takes the structured user answers and safely injects them into the specific existing memory markdown files using idempotent writes.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>Enriches the knowledge base without creating messy duplicate files.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Outdated Knowledge Problem:</strong> Keeps the memory store dynamically updated as the project evolves.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status processing">UPDATED</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"file"</span>: <span class="hl-val">"memory/hardware_specs.md"</span>,
+  <span class="hl-key">"action"</span>: <span class="hl-val">"Idempotent Write"</span>,
+  <span class="hl-key">"key_updated"</span>: <span class="hl-val">"clock_speed_hz"</span>,
+  <span class="hl-key">"status"</span>: <span class="hl-val">"SUCCESS"</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="70">
+        <div class="stage-num mono">8.2</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+            Create New Memory Files
+          </h3>
+          <p class="summary">Drafts entirely new memory files if the user introduced a new topic.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>If a user's answer describes an entirely new subsystem, this agent generates a brand new memory file from scratch.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>Handles scope creep and expands the architecture plan dynamically.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Missing File Problem:</strong> Prevents data from being dropped just because a folder didn't previously exist.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status processing">CREATED</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"new_file"</span>: <span class="hl-val">"memory/bluetooth_module.md"</span>,
+  <span class="hl-key">"category"</span>: <span class="hl-val">"Hardware/Wireless"</span>,
+  <span class="hl-key">"trigger"</span>: <span class="hl-val">"User Clarification"</span>,
+  <span class="hl-key">"status"</span>: <span class="hl-val">"INITIALIZED"</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="140">
+        <div class="stage-num mono">8.3</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+            Update memory.md Index
+          </h3>
+          <p class="summary">Refreshes the global directory table of contents.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Scans the entire memory store directory and updates the <code>MEMORY.md</code> master index file with links to any new or renamed files.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>Acts as a directory map so other agents can easily navigate the file system.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Dead Link Problem:</strong> Ensures that all cross-references in the system remain valid.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status processing">INDEXED</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"file_scanned"</span>: <span class="hl-num">15</span>,
+  <span class="hl-key">"new_entries_added"</span>: <span class="hl-num">1</span>,
+  <span class="hl-key">"index_file"</span>: <span class="hl-val">"MEMORY.md"</span>,
+  <span class="hl-key">"status"</span>: <span class="hl-val">"SYNCED"</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="210">
+        <div class="stage-num mono">8.4</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            Rebuild Memory Files
+          </h3>
+          <p class="summary">Rebuilds affected memory files cleanly with the user's inputs merged in.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Reconstructs the full Markdown structure using the updated JSON data, ensuring that the final file is perfectly formatted.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>Maintains strict adherence to the Markdown and JSON-only architecture, avoiding complex databases.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Format Drift Problem:</strong> Ensures the memory files stay pristine and human-readable after automated updates.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status ready">REBUILT</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"file"</span>: <span class="hl-val">"memory/hardware_specs.md"</span>,
+  <span class="hl-key">"format"</span>: <span class="hl-val">"MARKDOWN"</span>,
+  <span class="hl-key">"status"</span>: <span class="hl-val">"CLEAN_REBUILD"</span>,
+  <span class="hl-key">"action"</span>: <span class="hl-val">"READY_FOR_VERIFICATION"</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+    <div class="loopback-callout reveal">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <path d="M30 10 C30 24, 18 24, 8 24" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M8 24 L13 20 M8 24 L13 28" stroke="currentColor" stroke-width="1.8"/>
+      </svg>
+      <p>Once memories are rebuilt, the pipeline <b>loops back to Phase 6</b> to re-run gap detection &mdash; confirming the update actually closed the gap rather than assuming it did.</p>
+    </div>
+</main>
+
+<div class="shell">
+  <nav class="footnav">
+    <div class="footnav-row">
+      <a class="footnav-link prev" href="phase-07.html">
+        <span class="label mono">&larr; Previous</span>
+        <span class="name">07 &middot; Template User Clarification</span>
+      </a>
+      <a class="footnav-link next" href="phase-09.html">
+        <span class="label mono">Next &rarr;</span>
+        <span class="name">09 &middot; Template Final Assembly</span>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

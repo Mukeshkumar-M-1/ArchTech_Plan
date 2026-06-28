@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phase 01 &middot; Data Extraction Pipeline &mdash; Documentation Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="back-link" href="index.html">&larr; Architecture</a>
+    <div class="tracker">
+      <a class="active" href="phase-01.html" aria-label="Phase 01"></a>
+      <a class="" href="phase-02.html" aria-label="Phase 02"></a>
+      <a class="" href="phase-03.html" aria-label="Phase 03"></a>
+      <a class="" href="phase-04.html" aria-label="Phase 04"></a>
+      <a class="" href="phase-05.html" aria-label="Phase 05"></a>
+      <a class="" href="phase-06.html" aria-label="Phase 06"></a>
+      <a class="" href="phase-07.html" aria-label="Phase 07"></a>
+      <a class="" href="phase-08.html" aria-label="Phase 08"></a>
+      <a class="" href="phase-09.html" aria-label="Phase 09"></a>
+      <a class="" href="phase-10.html" aria-label="Phase 10"></a>
+    </div>
+  </div>
+</nav>
+
+<header class="phase-header shell">
+  <div class="eyebrow">
+    Phase 01 <span class="stage-count">&middot; stages 1.1 – 1.8</span>
+  </div>
+  <h1 class="reveal">Data Extraction Pipeline</h1>
+  <p class="goal reveal" data-delay="80">Convert messy, complicated <b>PDFs</b> into clean, easy-to-read instructions.</p>
+  
+</header>
+
+<main class="shell">
+  <div class="mechanism-panel reveal">
+    <span class="tag">How it works</span>
+    <p>The system reads the document page-by-page, cleans up the messy text, and finds the actual rules. It then rewrites those rules to sound professional, sorts them into folders, explains what they mean, and removes any duplicates.</p>
+  </div>
+
+  <div class="stage-sequence">
+    <div class="stage-guide"></div>
+      <div class="stage-card reveal" data-delay="0">
+        <div class="stage-num mono">1.1</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+            Ingest
+          </h3>
+          <p class="summary">Reads your uploaded documents and pulls out all the text, tables, and important rules.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <ul>
+                <li>Scans the uploaded document page by page, pulling out text and tables.</li>
+                <li>If a page is an image or scan (like a photo of a document), it uses OCR to read the text anyway.</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>It makes sure the system can read any type of file, whether it's a typed digital document or a scanned piece of paper.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Unreadable Document Problem:</strong> Scanned pages usually break computer programs. This step guarantees we capture every single word, no matter how the document was made.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status raw">RAW</span>
+            </div>
+            <pre><span class="hl-err"></span> Page 14 <span class="hl-err">...</span> \n The sys \n tem should support spi approx 10MHz <span class="hl-err">...~~$</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="70">
+        <div class="stage-num mono">1.2</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
+            Segment
+          </h3>
+          <p class="summary">Breaks the text into neat paragraphs and throws away useless things like page numbers and headers.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <ul>
+                <li>Organizes messy text into clear paragraphs.</li>
+                <li>Connects broken sentences back together so they make sense.</li>
+                <li>Splits giant blocks of text into smaller, readable chunks.</li>
+                <li>Automatically skips cover pages and the table of contents.</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>It clears away the junk, so the AI only focuses on the actual important rules, saving time and preventing confusion.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Cluttered Text Problem:</strong> Standard PDF readers often mix page numbers and footers into the middle of sentences. This step fixes all of that mess.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status processing">SEGMENTED</span>
+            </div>
+            <pre>The system should support spi approx 10MHz.</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="140">
+        <div class="stage-num mono">1.3</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            Detect
+          </h3>
+          <p class="summary">Uses intelligent scoring to isolate the actual engineering requirements from general background descriptions.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>It gives a score (from 0 to 10) to every sentence to see if it's an important rule:</p>
+              <ul>
+                <li><strong>High Score:</strong> Contains strict words like "must" or "shall".</li>
+                <li><strong>Medium Score:</strong> Contains measurements (like volts, speed, or temperature).</li>
+                <li><strong>Low Score:</strong> Vague words like "maybe" or "approximately".</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>It separates the strict instructions that need to be built from the general descriptions that are just there for context.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Storytelling Problem:</strong> Documents often have long, rambling introductions. This step throws away the fluff and keeps only the real requirements.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status processing">DETECTED</span>
+            </div>
+            <pre>Score: <span class="hl-val">8/10</span> [Pass]
+Reason: Directives found ("should"), Protocol ("spi"), Unit ("MHz")
+Text: The system should support spi approx 10MHz.</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="210">
+        <div class="stage-num mono">1.4</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+            Normalize
+          </h3>
+          <p class="summary">Rewrites every rule so they all use the exact same professional tone and format.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <ul>
+                <li>Changes weak suggestions (like "will", "should", or "needs to") into the strict, professional word: "shall".</li>
+                <li>Removes confusing or vague phrases like "if necessary" or "as needed".</li>
+                <li>Fixes grammar, capitalization, and double-spacing so everything looks uniform.</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>It makes the entire document extremely easy to read, because every instruction follows the exact same pattern.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Multiple Authors Problem:</strong> When different people write a document, the tone is messy. This step makes it look like one professional author wrote the whole thing.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status processing">NORMALIZED</span>
+            </div>
+            <pre>The system <span class="hl-key">shall</span> support <span class="hl-key">SPI</span>, <span class="hl-key">10MHz</span>.</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="280">
+        <div class="stage-num mono">1.5</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            Classify
+          </h3>
+          <p class="summary">Automatically sorts every rule into specific folders like Power, Software, or Safety.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>It reads each rule and tags it into a specific department, such as:</p>
+              <ul>
+                <li><strong>Hardware:</strong> Power, memory, screens, and physical parts.</li>
+                <li><strong>Software:</strong> Code, apps, and digital drivers.</li>
+                <li><strong>General:</strong> Safety, security, and performance speed.</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>It groups similar tasks together, so the software team only sees software rules, and the hardware team only sees hardware rules.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Manual Sorting Problem:</strong> Humans used to spend days reading thousands of lines to group them into folders. The AI now does this instantly.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status processing">CLASSIFIED</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"domain"</span>: <span class="hl-val">"Hardware/Interface"</span>,
+  <span class="hl-key">"text"</span>: <span class="hl-val">"The system shall support SPI, 10MHz."</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="350">
+        <div class="stage-num mono">1.6</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg>
+            Explain
+          </h3>
+          <p class="summary">Adds a clear, simple explanation for exactly what the rule means and why it exists.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <ul>
+                <li><strong>Meaning:</strong> Translates complex technical jargon into plain English.</li>
+                <li><strong>Components:</strong> Lists exactly which parts or systems are involved.</li>
+                <li><strong>Purpose:</strong> Explains the real-world reason why this rule is necessary.</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>It helps developers understand the big picture, preventing mistakes caused by blindly following instructions without knowing why.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The "Magic Numbers" Problem:</strong> Often, a rule will just list a random number or setting with no explanation. This stage adds the missing context so anyone can understand it.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status processing">EXPLAINED</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"meaning"</span>: <span class="hl-val">"Requires a 10MHz SPI bus."</span>,
+  <span class="hl-key">"purpose"</span>: <span class="hl-val">"High-speed synchronous communication."</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="420">
+        <div class="stage-num mono">1.7</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+            Score & ID
+          </h3>
+          <p class="summary">Generates keywords and assigns a permanent, unique tracking number to every rule.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <ul>
+                <li>Picks out 3 to 8 search keywords so the rule is easy to find later.</li>
+                <li>Gives a confidence score to show how sure the AI is that this is a real rule.</li>
+                <li>Assigns a permanent barcode-like ID number (e.g., REQ-001) to each rule.</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>It makes the document searchable and allows teams to track the progress of a specific rule over time.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Lost Item Problem:</strong> Without ID numbers, rules get lost or confused. This guarantees every single requirement can be tracked from start to finish.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status processing">SCORED & ID'D</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"id"</span>: <span class="hl-val">"REQ-HW-INT-042"</span>,
+  <span class="hl-key">"confidence"</span>: <span class="hl-val">0.95</span>,
+  <span class="hl-key">"keywords"</span>: [<span class="hl-val">"spi"</span>, <span class="hl-val">"10mhz"</span>, <span class="hl-val">"bus"</span>]
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="490">
+        <div class="stage-num mono">1.8</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M9 14l2 2 4-4"></path></svg>
+            Global Dedup
+          </h3>
+          <p class="summary">Finds rules that are repeated across the document and merges them into one single rule.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>It compares every single rule against all the others. If it finds two rules that say the exact same thing, it deletes the copy and merges them together.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>It creates a clean, focused list where every instruction is defined exactly once, preventing double-work.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Copy-Paste Problem:</strong> Large documents often repeat the same instruction in five different chapters. This cleans up the mess and creates one single source of truth.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status ready">READY</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"id"</span>: <span class="hl-val">"REQ-HW-INT-042"</span>,
+  <span class="hl-key">"status"</span>: <span class="hl-val">"master"</span>,
+  <span class="hl-key">"merged"</span>: <span class="hl-val">1</span>,
+  <span class="hl-key">"final_text"</span>: <span class="hl-val">"The system shall support SPI, 10MHz."</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+</main>
+
+<div class="shell">
+  <nav class="footnav">
+    <div class="footnav-row">
+      <span></span>
+      <a class="footnav-link next" href="phase-02.html">
+        <span class="label mono">Next &rarr;</span>
+        <span class="name">02 &middot; Memory Creation Pipeline</span>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

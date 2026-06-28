@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Path &mdash; Documentation Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="back-link" href="index.html">&larr; Architecture</a>
+    <span class="brand"><span class="dot"></span>learning path</span>
+    <a class="back-link mono" href="phase-01.html">Start phase 01 &rarr;</a>
+  </div>
+</nav>
+
+
+<main class="shell">
+
+  <!-- ===================== PROGRESSION ===================== -->
+  <section class="lp-section">
+    <h2 class="reveal">The eight-stage progression</h2>
+    <p class="lead reveal" data-delay="60">Each stage starts from a limitation in the previous one. Skipping ahead means solving a problem you haven't felt yet.</p>
+
+    <div class="stage-progression">
+      <div class="stage-progression-guide"></div>
+
+      <div class="lp-stage reveal" data-delay="0">
+        <div class="lp-stage-num mono">1</div>
+        <div class="lp-stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+            Single-Agent Pipeline
+          </h3>
+          <p class="summary">The simplest way to use an LLM: sending text in and getting an answer out.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>The Concept</h4>
+              <p>A single-agent pipeline treats the LLM like a function call. You give it a prompt and a document, and it returns a result. It doesn't use external tools, and it doesn't double-check its own work.</p>
+            </div>
+            <div class="detail-group">
+              <h4>The Inevitable Limitation</h4>
+              <p>As your input documents get larger, you hit the <strong>Token Limit</strong>. Even if the text fits, the model suffers from "Lost in the Middle" syndrome, where it forgets or hallucinates details buried deep inside a massive prompt.</p>
+            </div>
+            <div class="detail-group">
+              <h4>How to Master It</h4>
+              <p>Focus on <strong>Prompt Engineering</strong>. Learn how to structure system prompts, use XML tags to separate instructions from data, and ask the model to output structured JSON so your code can parse it reliably.</p>
+            </div>
+          </div>
+          <div class="lp-learns"><span>Prompt engineering</span><span>Context windows</span><span>Token limits</span></div>
+        </div>
+      </div>
+
+      <div class="lp-stage reveal" data-delay="60">
+        <div class="lp-stage-num mono">2</div>
+        <div class="lp-stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+            Tool Integration
+          </h3>
+          <p class="summary">Giving the LLM hands to interact with the outside world.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>The Concept</h4>
+              <p>An LLM is just text prediction. But if you provide JSON schemas defining functions (like <code>read_file</code> or <code>search_web</code>), the model can output a requested "Tool Call" instead of a normal text response. Your code intercepts this, executes the real function, and sends the result back to the model.</p>
+            </div>
+            <div class="detail-group">
+              <h4>The Inevitable Limitation</h4>
+              <p>A single tool call is great, but if the task requires doing 5 things in a row (e.g., searching, reading, writing), a single-pass tool integration isn't enough. The model needs a way to see the result of a tool and decide what to do next without stopping.</p>
+            </div>
+            <div class="detail-group">
+              <h4>How to Master It</h4>
+              <p>Learn how to define robust <strong>JSON Schemas</strong>. Master how to properly parse the model's tool calls in your code, execute them safely, and format the results back into a <code>tool_message</code> role.</p>
+            </div>
+          </div>
+          <div class="lp-learns"><span>Function calling</span><span>JSON Schemas</span><span>API integration</span></div>
+        </div>
+      </div>
+
+      <div class="lp-stage reveal active" data-delay="120">
+        <div class="lp-stage-num mono active">3</div>
+        <div class="lp-stage-body active">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+            <h3 style="display: flex; align-items: center; gap: 8px; margin: 0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+              Agent Loops
+            </h3>
+            <span class="tag mono" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); background: var(--accent-wash); padding: 2px 8px; border-radius: 4px;">ACTIVE DEV</span>
+          </div>
+          <p class="summary">Giving the model the ability to think, act, and observe repeatedly.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>The Concept</h4>
+              <p>Instead of a single pass, the code puts the LLM in a <code>while</code> loop. The model is given tools (like "read file" or "search web"). It decides which tool to use, sees the result, and loops again until it decides the task is finished.</p>
+            </div>
+            <div class="detail-group">
+              <h4>The Inevitable Limitation</h4>
+              <p>Infinite loops. An agent might get stuck trying to read a file that doesn't exist, repeatedly failing and burning through API credits. Furthermore, it struggles to follow strict, multi-step standard operating procedures.</p>
+            </div>
+            <div class="detail-group">
+              <h4>How to Master It</h4>
+              <p>Learn how to define robust <strong>Tool Schemas</strong>, implement strict error handling, and forcefully inject error messages back into the prompt so the agent knows <em>why</em> it failed and can self-correct.</p>
+            </div>
+          </div>
+          <div class="lp-learns"><span>Agent loops (ReAct)</span><span>Tool usage</span><span>Iterative reasoning</span></div>
+        </div>
+      </div>
+
+      <div class="lp-stage reveal" data-delay="180">
+        <div class="lp-stage-num mono">4</div>
+        <div class="lp-stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+            State Machines
+          </h3>
+          <p class="summary">Enforcing strict, multi-step workflows that an agent can't break.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>The Concept</h4>
+              <p>Instead of trusting a single agent to do 10 different tasks in order, you break the system into hardcoded code states (e.g., EXTRACT &rarr; VALIDATE &rarr; MERGE). The LLM only handles the logic inside a single state, while standard Python/Node handles the transitions.</p>
+            </div>
+            <div class="detail-group">
+              <h4>The Inevitable Limitation</h4>
+              <p>State machines fix workflow predictability, but as your project grows, passing massive strings of data from State A all the way to State Z causes context bloat and slows the system down.</p>
+            </div>
+            <div class="detail-group">
+              <h4>How to Master It</h4>
+              <p>Study <strong>Directed Acyclic Graphs (DAGs)</strong> and frameworks like LangGraph. Learn how to map complex business logic into explicit nodes and edges so failures are isolated and easy to debug.</p>
+            </div>
+          </div>
+          <div class="lp-learns"><span>State machines</span><span>Workflow transitions</span><span>Failure recovery</span></div>
+        </div>
+      </div>
+
+      <div class="lp-stage reveal" data-delay="240">
+        <div class="lp-stage-num mono">5</div>
+        <div class="lp-stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            Context Engineering
+          </h3>
+          <p class="summary">Curating exactly what the LLM sees to maximize performance.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>The Concept</h4>
+              <p>You stop sending the entire database to the model. Instead, you dynamically build the prompt in code, injecting only the exact snippets, variables, and context needed for the immediate task.</p>
+            </div>
+            <div class="detail-group">
+              <h4>The Inevitable Limitation</h4>
+              <p>As the workflow spans multiple days or touches thousands of files, the system loses track of things that happened in the past. Context engineering alone cannot give an agent true "memory".</p>
+            </div>
+            <div class="detail-group">
+              <h4>How to Master It</h4>
+              <p>Practice building dynamic prompt templates. Use token-counting libraries to measure your context budgets and ensure you never send 150,000 tokens when 2,000 would suffice.</p>
+            </div>
+          </div>
+          <div class="lp-learns"><span>Context windows</span><span>Token budgeting</span><span>Prompt templates</span></div>
+        </div>
+      </div>
+
+      <div class="lp-stage reveal" data-delay="300">
+        <div class="lp-stage-num mono">6</div>
+        <div class="lp-stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            Memory Systems
+          </h3>
+          <p class="summary">Giving the system the ability to remember past decisions.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>The Concept</h4>
+              <p>You implement persistent storage. Instead of replying instantly, the agent writes a summary of its work to a local <code>memory.json</code> or <code>.md</code> file. Future agents read this memory file instead of reading the entire bloated chat history.</p>
+            </div>
+            <div class="detail-group">
+              <h4>The Inevitable Limitation</h4>
+              <p>When you have 500 different memory files (e.g., one for every feature in an app), loading all of them into the prompt simultaneously hits the token limit again.</p>
+            </div>
+            <div class="detail-group">
+              <h4>How to Master It</h4>
+              <p>Learn the difference between <strong>Core Memory</strong> (always in the prompt) and <strong>Archival Memory</strong> (saved to disk). Design systems where the agent can explicitly trigger "save_to_memory" tools.</p>
+            </div>
+          </div>
+          <div class="lp-learns"><span>Memory architectures</span><span>Persistence</span><span>Summarization</span></div>
+        </div>
+      </div>
+
+      <div class="lp-stage reveal" data-delay="360">
+        <div class="lp-stage-num mono">7</div>
+        <div class="lp-stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            Validation Pipelines
+          </h3>
+          <p class="summary">Ensuring output quality using automated critique.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>The Concept</h4>
+              <p>You assign a second, distinct LLM (or a deterministic script) the role of "Validator". It reviews the output of the first agent against a strict rubric. If it fails, the validator sends feedback back to the first agent to try again.</p>
+            </div>
+            <div class="detail-group">
+              <h4>The Inevitable Limitation</h4>
+              <p>Validators can get stuck in "agreement loops" where they falsely approve bad work, or "rejection loops" where they demand impossible perfection, halting the system entirely.</p>
+            </div>
+            <div class="detail-group">
+              <h4>How to Master It</h4>
+              <p>Learn how to separate duties: use a creative model to write text, and a highly logical model to review it. Always introduce Human-in-the-Loop circuit breakers for safety.</p>
+            </div>
+          </div>
+          <div class="lp-learns"><span>Self-correction</span><span>Quality assurance</span><span>Review agents</span></div>
+        </div>
+      </div>
+
+      <div class="lp-stage reveal" data-delay="420">
+        <div class="lp-stage-num mono">8</div>
+        <div class="lp-stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            Workflow Orchestration
+          </h3>
+          <p class="summary">Managing an army of specialized, concurrent agents.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>The Concept</h4>
+              <p>Instead of one monolithic loop, an Orchestrator agent acts as a manager. It spawns sub-agents, assigns them distinct roles (Researcher, Coder, Reviewer), routes memory between them, and aggregates their results.</p>
+            </div>
+            <div class="detail-group">
+              <h4>The Inevitable Limitation</h4>
+              <p>Complexity. Debugging a system where 5 agents are talking to each other simultaneously requires rigorous logging, tracing, and observability tools.</p>
+            </div>
+            <div class="detail-group">
+              <h4>How to Master It</h4>
+              <p>Dive into Multi-Agent architectures like CrewAI or Autogen. Learn how to map dependencies using DAGs so agents execute exactly when their prerequisite data is ready.</p>
+            </div>
+          </div>
+          <div class="lp-learns"><span>Multi-agent systems</span><span>Scheduling</span><span>Dependencies</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECT MAPPING ===================== -->
+  <section class="lp-section">
+    <h2 class="reveal">How your own 10 phases map to this</h2>
+    <p class="lead reveal" data-delay="60">You don't need a separate practice project &mdash; the pipeline you're already building exercises every stage above.</p>
+
+    <div class="lp-map-table reveal">
+      <div class="lp-map-row"><div class="phase-cell">Phase 1</div><div class="tech-cell">Single-Agent Pipeline</div></div>
+      <div class="lp-map-row"><div class="phase-cell">Phase 2</div><div class="tech-cell">Tool Integration</div></div>
+      <div class="lp-map-row"><div class="phase-cell">Phase 3</div><div class="tech-cell">Context Engineering</div></div>
+      <div class="lp-map-row"><div class="phase-cell">Phase 4</div><div class="tech-cell">State Machines</div></div>
+      <div class="lp-map-row"><div class="phase-cell">Phase 5</div><div class="tech-cell">Agentic Data Navigation</div></div>
+      <div class="lp-map-row is-loop"><div class="phase-cell">Phase 6</div><div class="tech-cell">Validation Pipelines</div></div>
+      <div class="lp-map-row is-loop"><div class="phase-cell">Phase 7</div><div class="tech-cell">Agent Loops & Human-in-the-loop</div></div>
+      <div class="lp-map-row is-loop"><div class="phase-cell">Phase 8</div><div class="tech-cell">Memory Systems</div></div>
+      <div class="lp-map-row"><div class="phase-cell">Phase 9</div><div class="tech-cell">Workflow Orchestration</div></div>
+      <div class="lp-map-row"><div class="phase-cell">Phase 10</div><div class="tech-cell">Output pipeline</div></div>
+    </div>
+  </section>  
+
+</main>
+
+<div class="shell">
+  <nav class="footnav">
+    <div class="footnav-row">
+      <a class="footnav-link prev" href="index.html">
+        <span class="label mono">&larr; Back</span>
+        <span class="name">Architecture overview</span>
+      </a>
+      <a class="footnav-link next" href="phase-01.html">
+        <span class="label mono">Start at &rarr;</span>
+        <span class="name">01 &middot; Data Extraction Pipeline</span>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

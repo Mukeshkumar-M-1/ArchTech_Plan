@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phase 10 &middot; Template Outputs &mdash; Documentation Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="back-link" href="index.html">&larr; Architecture</a>
+    <div class="tracker">
+      <a class="" href="phase-01.html" aria-label="Phase 01"></a>
+      <a class="" href="phase-02.html" aria-label="Phase 02"></a>
+      <a class="" href="phase-03.html" aria-label="Phase 03"></a>
+      <a class="" href="phase-04.html" aria-label="Phase 04"></a>
+      <a class="" href="phase-05.html" aria-label="Phase 05"></a>
+      <a class="" href="phase-06.html" aria-label="Phase 06"></a>
+      <a class="" href="phase-07.html" aria-label="Phase 07"></a>
+      <a class="" href="phase-08.html" aria-label="Phase 08"></a>
+      <a class="" href="phase-09.html" aria-label="Phase 09"></a>
+      <a class="active" href="phase-10.html" aria-label="Phase 10"></a>
+    </div>
+  </div>
+</nav>
+
+<header class="phase-header shell">
+  <div class="eyebrow">
+    Phase 10 <span class="stage-count">&middot; stages Final</span>
+  </div>
+  <h1 class="reveal">Template Outputs</h1>
+  <p class="goal reveal" data-delay="80">Export the completed document into <b>distribution-ready</b> final formats.</p>
+  
+</header>
+
+<main class="shell">
+  <div class="mechanism-panel reveal">
+    <span class="tag">How it works</span>
+    <p>This is the final phase in the entire 10-phase pipeline. After the document is completely assembled and formatted, this phase handles the translation and export of the file into formats the user can download and share with their teams.</p>
+  </div>
+
+  <div class="stage-sequence">
+    <div class="stage-guide"></div>
+      
+      <div class="stage-card reveal" data-delay="0">
+        <div class="stage-num mono">10.1</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="m9 15 2 2 4-4"></path></svg>
+            Stage Final Document
+          </h3>
+          <p class="summary">Stages the final verified text for export.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Takes the golden master copy from Phase 9 (which includes all memory updates from user clarifications) and loads it into the export staging area.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>Isolates the generation engine from the export engine.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Corruption Problem:</strong> Ensures that if a document exporter crashes, it doesn't destroy the generated markdown text.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status processing">STAGED</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"source_file"</span>: <span class="hl-val">"GOLDEN_MASTER_DRAFT.md"</span>,
+  <span class="hl-key">"status"</span>: <span class="hl-val">"LOADED_TO_MEMORY"</span>,
+  <span class="hl-key">"bytes"</span>: <span class="hl-num">245091</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="70">
+        <div class="stage-num mono">10.2</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Markdown to .odt Export
+          </h3>
+          <p class="summary">Converts the markdown into an editable OpenDocument Text file using Pandoc.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Uses Pandoc to convert the standard <code>.md</code> file into an OpenDocument Text (<code>.odt</code>) file, applying a pre-styled reference document to preserve complex table formatting.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>ODT is an open, editable word processor format supported by LibreOffice, Google Docs, and Microsoft Word.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>The Vendor Lock-in Problem:</strong> Ensures the document isn't trapped in a developer-only markdown format, making it accessible to the entire enterprise.</p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status ready">EXPORTED</span>
+            </div>
+            <pre><span>> run pandoc \</span>
+  --from=markdown \
+  --to=odt \
+  --reference-doc=company_template.odt \
+  --output=final_architecture.odt
+[OK] Export complete</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card reveal" data-delay="140">
+        <div class="stage-num mono">10.3</div>
+        <div class="stage-body">
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+            Outputs Complete
+          </h3>
+          <p class="summary">Pipeline fully executed and files delivered.</p>
+          <div class="stage-details">
+            <div class="detail-group">
+              <h4>What this stage is doing</h4>
+              <p>Clears temporary staging files and presents the final document links to the user for download.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Why it is useful</h4>
+              <p>Signals the absolute end of the automated architecture process.</p>
+            </div>
+            <div class="detail-group">
+              <h4>Problem Solved</h4>
+              <p><strong>Pipeline Completion.</strong></p>
+            </div>
+          </div>
+          <div class="data-snippet reveal" data-delay="100">
+            <div class="snippet-header">
+              <span>Data State</span>
+              <span class="status success">SUCCESS</span>
+            </div>
+            <pre>{
+  <span class="hl-key">"pipeline_status"</span>: <span class="hl-val">"100% COMPLETE"</span>,
+  <span class="hl-key">"files_delivered"</span>: [
+    <span class="hl-val">"final_architecture.md"</span>,
+    <span class="hl-val">"final_architecture.odt"</span>
+  ]
+}</pre>
+          </div>
+        </div>
+      </div>
+  </div>
+</main>
+
+<div class="shell">
+  <nav class="footnav">
+    <div class="footnav-row">
+      <a class="footnav-link prev" href="phase-09.html">
+        <span class="label mono">&larr; Previous</span>
+        <span class="name">09 &middot; Template Final Assembly</span>
+      </a>
+      <a class="footnav-link next" href="index.html">
+        <span class="label mono">Done &rarr;</span>
+        <span class="name">Back to architecture</span>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
